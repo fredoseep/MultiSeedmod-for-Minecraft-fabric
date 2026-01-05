@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "package": "com.fredoseep.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "CreateWorldScreenMixin",
+    "MixinGeneratorOptions",
+    "MixinLevelProperties",
+    "MixinMinecraftServer",
+    "MixinSeedCommand",
+    "MixinServerWorld"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "CreateWorldScreenMixin"
+  ]
+}

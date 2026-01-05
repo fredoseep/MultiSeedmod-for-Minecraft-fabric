@@ -1,0 +1,10 @@
+accessWidener v1 named
+
+# 1. 开放 SimpleRegistry 的 entriesByKey 字段 (为了能强制替换维度)
+accessible field net/minecraft/util/registry/SimpleRegistry entriesByKey Lcom/google/common/collect/BiMap;
+
+# 2. 开放 SurfaceChunkGenerator 的配置字段 (为了获取旧配置)
+# 注意：你的源码显示字段名为 field_24774，类型为 ChunkGeneratorType
+accessible field net/minecraft/world/gen/chunk/SurfaceChunkGenerator field_24774 Lnet/minecraft/world/gen/chunk/ChunkGeneratorType;
+accessible method net/minecraft/world/dimension/DimensionType createNetherGenerator (J)Lnet/minecraft/world/gen/chunk/ChunkGenerator;
+accessible method net/minecraft/world/dimension/DimensionType createEndGenerator (J)Lnet/minecraft/world/gen/chunk/ChunkGenerator;

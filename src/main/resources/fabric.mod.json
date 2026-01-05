@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "multiseed",
+	"version": "${version}",
+	"name": "MultiSeed",
+	"accessWidener": "multiseed.accesswidener",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/multiseed/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.fredoseep.MultiSeed"
+		]
+	},
+	"mixins": [
+		"multiseed.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.16.1",
+		"java": ">=8"
+	}
+}
