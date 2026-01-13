@@ -8,3 +8,5 @@ accessible field net/minecraft/util/registry/SimpleRegistry entriesByKey Lcom/go
 accessible field net/minecraft/world/gen/chunk/SurfaceChunkGenerator field_24774 Lnet/minecraft/world/gen/chunk/ChunkGeneratorType;
 accessible method net/minecraft/world/dimension/DimensionType createNetherGenerator (J)Lnet/minecraft/world/gen/chunk/ChunkGenerator;
 accessible method net/minecraft/world/dimension/DimensionType createEndGenerator (J)Lnet/minecraft/world/gen/chunk/ChunkGenerator;
+accessible method net/minecraft/client/MinecraftClient startIntegratedServer (Ljava/lang/String;Lnet/minecraft/util/registry/RegistryTracker$Modifiable;Ljava/util/function/Function;Lcom/mojang/datafixers/util/Function4;ZLnet/minecraft/client/MinecraftClient$WorldLoadAction;)V
+accessible class net/minecraft/client/MinecraftClient$WorldLoadAction

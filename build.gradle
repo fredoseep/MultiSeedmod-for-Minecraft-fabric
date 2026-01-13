@@ -14,6 +14,7 @@ loom {
 	accessWidenerPath = file("src/main/resources/multiseed.accesswidener")
 }
 repositories {
+	maven { url "https://maven.fabricmc.net/" }
 	// Add repositories to retrieve artifacts from in here.
 	// You should only use this when depending on other mods because
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
@@ -26,7 +27,12 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	
+	modImplementation files("libs/SpeedRunIGT-16.0+1.16.1.jar")
+	modImplementation files("libs/standardsettings-2.3+1.16-1.16.1.jar")
+	modImplementation files("libs/speedrunapi-2.1+1.16-1.16.1.jar")
+	modImplementation files("libs/atum-2.7.1+1.16-1.16.1.jar")
+	modImplementation "net.fabricmc.fabric-api:fabric-api:0.18.0+build.387-1.16.1"
+	include "net.fabricmc.fabric-api:fabric-api:0.18.0+build.387-1.16.1"
 }
 
 processResources {

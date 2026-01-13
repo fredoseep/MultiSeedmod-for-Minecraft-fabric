@@ -8,6 +8,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 
+import java.util.Random;
+
 public class MultiSeedConfigScreen extends Screen {
     private final Screen parent;
     private TextFieldWidget overworldField;
@@ -44,10 +46,30 @@ public class MultiSeedConfigScreen extends Screen {
 
 
     private void parseAndSave() {
-        MultiSeedContext.overworldSeed = parseSeed(this.overworldField.getText());
-        MultiSeedContext.netherSeed = parseSeed(this.netherField.getText());
-        MultiSeedContext.endSeed = parseSeed(this.endField.getText());
+        Random random = new Random();
+        long seed = random.nextLong();
+        String owText = this.overworldField.getText().trim();
+        if (owText.isEmpty()) {
+            MultiSeedContext.overworldSeed = seed;
+        } else {
+            MultiSeedContext.overworldSeed = parseSeed(owText);
+        }
+
+        String netherText = this.netherField.getText().trim();
+        if (netherText.isEmpty()) {
+            MultiSeedContext.netherSeed = seed;
+        } else {
+            MultiSeedContext.netherSeed = parseSeed(netherText);
+        }
+
+        String endText = this.endField.getText().trim();
+        if (endText.isEmpty()) {
+            MultiSeedContext.endSeed = seed;
+        } else {
+            MultiSeedContext.endSeed = parseSeed(endText);
+        }
     }
+
 
     /**
      * 辅助方法：像原版一样解析种子

@@ -1,6 +1,7 @@
 package com.fredoseep.mixin;
 
 import com.fredoseep.client.MultiSeedContext;
+import com.fredoseep.util.SpeedRunIGTHelper;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.GeneratorOptions;
@@ -42,8 +43,6 @@ public class MixinMinecraftServer {
 
         if (dimType.hasCeiling() && !dimType.hasSkyLight()) {
             if (netherSeed != 0L) {
-                // 使用默认的地狱配置，但使用我们的种子
-                // 因为是运行时替换，不会破坏存档文件里的配置，所以不会卡死
                 args.set(8, DimensionType.createNetherGenerator(netherSeed));
                 args.set(10, netherSeed);
             }

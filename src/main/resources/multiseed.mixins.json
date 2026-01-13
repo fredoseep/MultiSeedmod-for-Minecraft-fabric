@@ -4,7 +4,10 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "CreateWorldScreenMixin",
+    "MixinAtum",
+    "MixinDefaultBiomeFeatures",
     "MixinGeneratorOptions",
+    "MixinLakeFeature",
     "MixinLevelProperties",
     "MixinMinecraftServer",
     "MixinSeedCommand",
@@ -17,6 +20,8 @@
     "requireAnnotations": true
   },
   "client": [
-    "CreateWorldScreenMixin"
+    "CreateWorldScreenMixin",
+    "DebugHudMixin",
+    "MixinTitleScreen"
   ]
 }
