@@ -4,28 +4,32 @@ import com.fredoseep.client.MultiSeedContext;
 import com.fredoseep.config.SeedTypeConfig;
 import com.fredoseep.net.SeedNetworkHandler;
 
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture; // 记得导入这个
 
 public class FetchSeed {
     public FetchSeed(){}
 
-    public void fetchASetOfSeeds(){
-        SeedNetworkHandler.fetchSeeds(this.randAnOverworldType()).thenAccept(result -> {
-
+    public CompletableFuture<Void> fetchASetOfSeeds(){
+        return SeedNetworkHandler.fetchSeeds(this.randAnOverworldType()).thenAccept(result -> {
             if (result.error != null) {
-                System.out.println("fetch failed");
+                System.out.println("fetch failed: " + result.error);
                 return;
             }
-            String overworldSeed = result.overworldSeed;
-            String netherSeed = result.netherSeed;
+            try {
+                String overworldSeed = result.overworldSeed;
+                String netherSeed = result.netherSeed;
 
-            MultiSeedContext.overworldSeed = Long.parseLong(overworldSeed);
-            MultiSeedContext.netherSeed = Long.parseLong(netherSeed);
-            MultiSeedContext.endSeed = Long.parseLong(overworldSeed);
+                if (overworldSeed != null) MultiSeedContext.overworldSeed = Long.parseLong(overworldSeed);
+                if (netherSeed != null) MultiSeedContext.netherSeed = Long.parseLong(netherSeed);
+                if (overworldSeed != null) MultiSeedContext.endSeed = Long.parseLong(overworldSeed);
 
+                System.out.println("[MultiSeed] 种子已更新: " + overworldSeed);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
         });
     }
 
@@ -40,6 +44,4 @@ public class FetchSeed {
         Random random = new Random();
         return seedTypeList.get(random.nextInt(seedTypeList.size()));
     }
-
-
 }

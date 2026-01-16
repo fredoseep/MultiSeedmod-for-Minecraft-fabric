@@ -1,13 +1,9 @@
 package com.fredoseep.util;
 
-import com.fredoseep.client.MultiSeedContext;
 import com.mojang.serialization.Lifecycle;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.TitleScreen;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.resource.DataPackSettings;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.registry.RegistryTracker;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.GameMode;
@@ -20,11 +16,20 @@ import java.util.Random;
 
 public class WorldCreationHelper {
 
-    
     public static void createAutoWorld(MinecraftClient client, Screen fallbackScreen) {
-      FetchSeed fetchSeed = new FetchSeed();
-      fetchSeed.fetchASetOfSeeds();
+        FetchSeed fetchSeed = new FetchSeed();
 
+        System.out.println("[MultiSeed] 正在获取种子...");
+
+        fetchSeed.fetchASetOfSeeds().thenRun(() -> {
+            client.execute(() -> {
+                System.out.println("[MultiSeed] 种子获取完毕，开始创建世界...");
+                startWorldGen(client);
+            });
+        });
+    }
+
+    private static void startWorldGen(MinecraftClient client) {
         SpeedRunIGTHelper.tryResetTimer();
         StandardsettingsHelper.tryResetSettings();
 
@@ -58,6 +63,4 @@ public class WorldCreationHelper {
             e.printStackTrace();
         }
     }
-
-
 }
