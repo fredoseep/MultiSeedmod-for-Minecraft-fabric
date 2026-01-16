@@ -1,12 +1,12 @@
 {
 	"schemaVersion": 1,
-	"id": "multiseed",
-	"version": "${version}",
-	"name": "MultiSeed",
+	"id": "multiseeds",
+	"version": "2.3.0",
+	"name": "MultiSeeds",
 	"accessWidener": "multiseed.accesswidener",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A fabric mod to generate a world with different seeds for each dimensions, and practice ranked seeds",
 	"authors": [
-		"Me!"
+		"fredoseep"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",

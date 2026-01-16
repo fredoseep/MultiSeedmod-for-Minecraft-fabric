@@ -13,7 +13,7 @@ public class FetchSeed {
     public FetchSeed(){}
 
     public CompletableFuture<Void> fetchASetOfSeeds(){
-        return SeedNetworkHandler.fetchSeeds(this.randAnOverworldType()).thenAccept(result -> {
+        return SeedNetworkHandler.fetchSeeds(this.randAnOverworldType(),this.randABastionType()).thenAccept(result -> {
             if (result.error != null) {
                 System.out.println("fetch failed: " + result.error);
                 return;
@@ -33,7 +33,7 @@ public class FetchSeed {
         });
     }
 
-    public String randAnOverworldType(){
+    private String randAnOverworldType(){
         List<String> seedTypeList = new LinkedList<>();
         if(SeedTypeConfig.getBoolean("temple"))seedTypeList.add("desert_temple");
         if(SeedTypeConfig.getBoolean("shipwreck"))seedTypeList.add("shipwreck");
@@ -44,4 +44,15 @@ public class FetchSeed {
         Random random = new Random();
         return seedTypeList.get(random.nextInt(seedTypeList.size()));
     }
+    private String randABastionType(){
+        List<String> seedTypeList = new LinkedList<>();
+        if(SeedTypeConfig.getBoolean("housing"))seedTypeList.add("housing");
+        if(SeedTypeConfig.getBoolean("stables"))seedTypeList.add("stables");
+        if(SeedTypeConfig.getBoolean("bridge"))seedTypeList.add("bridge");
+        if(SeedTypeConfig.getBoolean("treasure"))seedTypeList.add("treasure");
+        if(seedTypeList.isEmpty())return null;
+        Random random = new Random();
+        return seedTypeList.get(random.nextInt(seedTypeList.size()));
+    }
+
 }

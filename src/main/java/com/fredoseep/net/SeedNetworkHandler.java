@@ -20,7 +20,7 @@ public class SeedNetworkHandler {
         public String error;
     }
 
-    public static CompletableFuture<SeedResult> fetchSeeds(String overworldSeedTypeText) {
+    public static CompletableFuture<SeedResult> fetchSeeds(String overworldSeedTypeText,String bastionTypeText) {
         SeedResult result = new SeedResult();
         if(overworldSeedTypeText==null){
             Random random = new Random();
@@ -33,7 +33,7 @@ public class SeedNetworkHandler {
             HttpURLConnection conn = null;
 
             try {
-                String API_URL = BASE_URL+"?overworld="+overworldSeedTypeText;
+                String API_URL = BASE_URL+"?overworld="+overworldSeedTypeText+"&nether="+bastionTypeText;
                 URL url = new URL(API_URL);
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
