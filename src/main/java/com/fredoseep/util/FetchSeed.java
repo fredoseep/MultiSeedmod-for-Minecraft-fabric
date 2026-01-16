@@ -13,7 +13,7 @@ public class FetchSeed {
     public FetchSeed(){}
 
     public void fetchASetOfSeeds(){
-        SeedNetworkHandler.fetchSeeds(this.randAOverworldType()).thenAccept(result -> {
+        SeedNetworkHandler.fetchSeeds(this.randAnOverworldType()).thenAccept(result -> {
 
             if (result.error != null) {
                 System.out.println("fetch failed");
@@ -29,7 +29,7 @@ public class FetchSeed {
         });
     }
 
-    public String randAOverworldType(){
+    public String randAnOverworldType(){
         List<String> seedTypeList = new LinkedList<>();
         if(SeedTypeConfig.getBoolean("temple"))seedTypeList.add("desert_temple");
         if(SeedTypeConfig.getBoolean("shipwreck"))seedTypeList.add("shipwreck");

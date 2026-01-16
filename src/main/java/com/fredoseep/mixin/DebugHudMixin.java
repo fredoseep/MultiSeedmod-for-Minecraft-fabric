@@ -14,6 +14,6 @@ public class DebugHudMixin {
     @Inject(method = "getRightText", at = @At("RETURN"))
     private void addModVersion(CallbackInfoReturnable<List<String>> cir) {
         List<String> list = cir.getReturnValue();
-        list.add("5年刷种，3年排位-1.0.0");
+        list.add("5年刷种，3年排位-2.1.1");
     }
 }
