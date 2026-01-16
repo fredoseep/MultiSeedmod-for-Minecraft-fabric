@@ -6,10 +6,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 
 public class SeedNetworkHandler {
-    private static final String API_URL = "http://43.143.231.104:8000/api/seed";
+    private static final String BASE_URL = "http://43.143.231.104:8000/api/seed";
 
     private static final Gson gson = new Gson();
 
@@ -19,12 +20,20 @@ public class SeedNetworkHandler {
         public String error;
     }
 
-    public static CompletableFuture<SeedResult> fetchSeeds() {
+    public static CompletableFuture<SeedResult> fetchSeeds(String overworldSeedTypeText) {
+        SeedResult result = new SeedResult();
+        if(overworldSeedTypeText==null){
+            Random random = new Random();
+            result.overworldSeed = String.valueOf(random.nextLong());
+            result.netherSeed = String.valueOf(random.nextLong());
+            return CompletableFuture.supplyAsync(()->{return result;});
+        }
         return CompletableFuture.supplyAsync(() -> {
-            SeedResult result = new SeedResult();
+
             HttpURLConnection conn = null;
 
             try {
+                String API_URL = BASE_URL+"?overworld="+overworldSeedTypeText;
                 URL url = new URL(API_URL);
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");

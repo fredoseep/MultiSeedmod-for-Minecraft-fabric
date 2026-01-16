@@ -1,5 +1,7 @@
 package com.fredoseep;
 
+import com.fredoseep.client.MultiSeedContext;
+import com.fredoseep.config.SeedTypeConfig;
 import net.fabricmc.api.ModInitializer;
 
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +21,7 @@ public class MultiSeed implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
+		SeedTypeConfig.load();
+
 	}
 }
