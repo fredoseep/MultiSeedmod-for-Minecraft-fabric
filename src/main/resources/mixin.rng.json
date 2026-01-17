@@ -1,0 +1,37 @@
+{
+  "required": true,
+  "package": "com.fredoseep.rngmanipulate.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinElderGuardianEntity",
+    "MixinIronGolemEntity",
+    "MixinPiglinBrain",
+    "MixinPiglinEntity",
+    "MixinSusStewLootFunction",
+    "accessor.PiglinBrainAccessor",
+    "dragon.MixinEnderDragonEntity",
+    "dragon.MixinEnderDragonFight",
+    "dragon.MixinHoldingPatternPhase",
+    "dragon.MixinStrafePlayerPhase",
+    "pathing.MixinStructureStart",
+    "pathing.MixinZombiefiedPiglinEntity",
+    "spawn.MixinDrownedEntity",
+    "spawn.MixinGhastEntity",
+    "spawn.MixinHoglinEntity",
+    "spawn.MixinHostileEntity",
+    "spawn.MixinPiglinEntity",
+    "spawn.MixinSpawnHelper",
+    "spawn.MixinTNTEntity",
+    "spawn.MixinZombifiedPiglinEntity",
+    "world.MixinPortalForcer",
+    "world.gen.MixinDungeonFeature",
+    "world.gen.MixinMineshaftGeneratorCorridor",
+    "world.gen.MixinNetherFortressGenerator",
+    "world.gen.MixinNetherFossilFeature",
+    "world.gen.MixinOceanRuinGeneratorPiece",
+    "world.gen.MixinSpringFeature"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
