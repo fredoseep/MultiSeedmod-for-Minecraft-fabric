@@ -18,10 +18,14 @@
 	"entrypoints": {
 		"main": [
 			"com.fredoseep.MultiSeed"
+		],
+		"preLaunch": [
+			"com.fredoseep.MultiSeedPreLaunch"
 		]
 	},
 	"mixins": [
-		"multiseed.mixins.json"
+		"multiseed.mixins.json",
+		"mixin.rng.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.18.4",
