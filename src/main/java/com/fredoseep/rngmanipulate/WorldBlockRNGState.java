@@ -41,10 +41,7 @@ public class WorldBlockRNGState extends PersistentState {
     public CompoundTag toTag(CompoundTag tag) {
         for(Type value : Type.values()) {
             CompoundTag indexTag = new CompoundTag();
-
-            // 注意这里的 (ConcurrentHashMap<Long, Integer>)
             for(Map.Entry<Long, Integer> entry : ((ConcurrentHashMap<Long, Integer>)this.indexMap.get(value)).entrySet()) {
-                // 既然泛型已经明确了，内部其实就不需要再强转了，代码可以更简洁
                 indexTag.putInt(entry.getKey().toString(), entry.getValue());
             }
 

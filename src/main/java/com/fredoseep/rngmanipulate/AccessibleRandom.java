@@ -4,9 +4,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class AccessibleRandom extends Random {
-   private static final long multiplier = 25214903917L;
-   private static final long addend = 11L;
-   private static final long mask = 281474976710655L;
+
    public final AtomicLong seed = new AtomicLong((new Random()).nextLong());
 
    protected int next(int bits) {

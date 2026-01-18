@@ -18,12 +18,8 @@ public class WorldCreationHelper {
 
     public static void createAutoWorld(MinecraftClient client, Screen fallbackScreen) {
         FetchSeed fetchSeed = new FetchSeed();
-
-        System.out.println("[MultiSeed] 正在获取种子...");
-
         fetchSeed.fetchASetOfSeeds().thenRun(() -> {
             client.execute(() -> {
-                System.out.println("[MultiSeed] 种子获取完毕，开始创建世界...");
                 startWorldGen(client);
             });
         });
@@ -58,7 +54,6 @@ public class WorldCreationHelper {
                     false,
                     MinecraftClient.WorldLoadAction.NONE
             );
-            System.out.println("[MultiSeed] startIntegratedServer 指令已发送");
         } catch (Exception e) {
             e.printStackTrace();
         }

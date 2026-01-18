@@ -13,6 +13,7 @@
     "dragon.MixinEnderDragonFight",
     "dragon.MixinHoldingPatternPhase",
     "dragon.MixinStrafePlayerPhase",
+    "pathing.MixinChunkCache",
     "pathing.MixinStructureStart",
     "pathing.MixinZombiefiedPiglinEntity",
     "spawn.MixinDrownedEntity",

@@ -26,7 +26,6 @@ public class FetchSeed {
                 if (netherSeed != null) MultiSeedContext.netherSeed = Long.parseLong(netherSeed);
                 if (overworldSeed != null) MultiSeedContext.endSeed = Long.parseLong(overworldSeed);
 
-                System.out.println("[MultiSeed] 种子已更新: " + overworldSeed);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }

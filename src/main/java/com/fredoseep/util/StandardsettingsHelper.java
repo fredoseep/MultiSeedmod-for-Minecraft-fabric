@@ -9,7 +9,6 @@ public class StandardsettingsHelper {
             Method resetMethod = resetClass.getMethod("reset");
             resetMethod.invoke(null);
         } catch (ClassNotFoundException e) {
-            System.out.println("[MultiSeed] 未检测到 StandardSettings，跳过适配。");
         } catch (Exception e) {
             e.printStackTrace();
         }

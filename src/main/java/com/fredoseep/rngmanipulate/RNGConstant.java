@@ -18,7 +18,6 @@ import java.util.Set;
 public class RNGConstant {
    public static final Set<SpawnReason> WHITELISTED_SPAWN_REASONS;
    public static final SingleStateFeatureConfig LAVA_FEATURE_CONFIG;
-   public static final int CANCEL_BLOCK_ENTITIES_RADIUS = 500;
    private static final LocationPredicate bastionFeature;
 
    public static boolean shouldCancelBlockEntity(World world, Vec3i blockPos) {

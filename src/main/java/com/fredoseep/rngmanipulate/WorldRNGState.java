@@ -42,9 +42,6 @@ public class WorldRNGState extends PersistentState {
 
    }
 
-   public long getDefaultSeed() {
-      return this.defaultSeed;
-   }
 
    public CompoundTag toTag(CompoundTag tag) {
       List<Long> seeds = (List)this.randomHashMap.values().stream().map(AccessibleRandom::getSeed).collect(Collectors.toList());
@@ -77,14 +74,7 @@ public class WorldRNGState extends PersistentState {
       return (AccessibleRandom)this.randomHashMap.get(type.ordinal());
    }
 
-   public int getEyeThrows() {
-      return this.eyeThrows;
-   }
 
-   public void addEyeThrows() {
-      ++this.eyeThrows;
-      this.markDirty();
-   }
 
    public static enum Type {
       BLAZE,
@@ -131,9 +121,6 @@ public class WorldRNGState extends PersistentState {
       GHAST,
       SILVERFISH_SPAWN;
 
-      // $FF: synthetic method
-      private static Type[] $values() {
-         return new Type[]{BLAZE, BLAZE_SPAWN, MAGMA_CUBE_SPAWN, BARTER, ENDERMAN, FLINT, EYE, SUS_STEW, HOGLIN, FOOD_RANDOM, TRADE, DRAGON_STANDARD, DRAGON_PERCH, DRAGON_PATH, DRAGON_HEIGHT, CHICKEN, SHEEP, SHEEP_SHEARS, COW, PIG, ENDER_MITE, RAIN_WITH_THUNDER, SPAWN, PHANTOM, LEAVES, DEAD_BUSH, FORTRESS_SPAWN, BLAZE_SPAWN_COOLDOWN, BLAZE_SPAWN_POSITION, SKELETON, TRIDENT_DROP, TRIDENT_DURATION, SHULKER, VILLAGE_CURING, WITHER_SKELETON_L0, WITHER_SKELETON_L1, WITHER_SKELETON_L2, WITHER_SKELETON_L3, CAT_TAME, WOLF_TAME, HORSE_TAME, GHAST};
-      }
+
    }
 }

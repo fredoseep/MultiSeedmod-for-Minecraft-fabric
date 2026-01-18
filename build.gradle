@@ -20,6 +20,10 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+
+	flatDir {
+		dirs 'libs'
+	}
 }
 
 dependencies {
@@ -31,6 +35,8 @@ dependencies {
 	modImplementation files("libs/standardsettings-2.3+1.16-1.16.1.jar")
 	modImplementation files("libs/speedrunapi-2.1+1.16-1.16.1.jar")
 	modImplementation files("libs/atum-2.7.1+1.16-1.16.1.jar")
+	modImplementation "local:Fabric-ASM:v2.3"
+	include "local:Fabric-ASM:v2.3"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:0.18.0+build.387-1.16.1"
 	include "net.fabricmc.fabric-api:fabric-api:0.18.0+build.387-1.16.1"
 }
@@ -76,9 +82,9 @@ publishing {
 
 	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
 	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
+		mavenCentral()
+		maven { url "https://maven.fabricmc.net/" }
+		maven { url "https://jitpack.io" }
+		maven { url 'https://maven.chocohead.org' }
 	}
 }

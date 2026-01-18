@@ -14,10 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinAtum {
     @Inject(method = "createNewWorld", at = @At("HEAD"), cancellable = true, remap = false)
     private static void hijackCreateWorld(CallbackInfo ci) {
-        System.out.println("[MultiSeed] 正在劫持 Atum 重置请求...");
-
         Atum.stopRunning();
-
         WorldCreationHelper.createAutoWorld(MinecraftClient.getInstance(), new TitleScreen());
         ci.cancel();
     }
