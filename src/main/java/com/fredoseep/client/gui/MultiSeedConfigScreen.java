@@ -16,6 +16,7 @@ public class MultiSeedConfigScreen extends Screen {
     private TextFieldWidget netherField;
     private TextFieldWidget endField;
 
+
     public MultiSeedConfigScreen(Screen parent) {
         super(new LiteralText("Dimension Seeds Config"));
         this.parent = parent;

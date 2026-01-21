@@ -13,7 +13,7 @@ public class FetchSeed {
     public FetchSeed(){}
 
     public CompletableFuture<Void> fetchASetOfSeeds(){
-        return SeedNetworkHandler.fetchSeeds(this.randAnOverworldType(),this.randABastionType()).thenAccept(result -> {
+        return (!SeedTypeConfig.getBoolean("usematchid")?SeedNetworkHandler.fetchSeeds(this.randAnOverworldType(),this.randABastionType()):SeedNetworkHandler.fetchSeeds(SeedTypeConfig.getString("matchIdText"))).thenAccept(result -> {
             if (result.error != null) {
                 System.out.println("fetch failed: " + result.error);
                 return;

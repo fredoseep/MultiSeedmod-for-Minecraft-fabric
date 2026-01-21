@@ -32,8 +32,16 @@ public class SeedTypeConfig {
     }
     public static boolean getBoolean(String key){
         String value = properties.getProperty(key);
-        if(value==null)return true;
+        if(value==null) {
+            return !key.equals("usematchid");
+        }
         return Boolean.parseBoolean(value);
+    }
+    public static void setString(String key,String value){properties.setProperty(key,value);}
+    public static String getString(String key){
+        String value = properties.getProperty(key);
+        if(value==null)return "";
+        return value;
     }
 
 }
