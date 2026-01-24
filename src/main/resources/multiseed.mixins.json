@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "CreateWorldScreenMixin",
+    "ForceRuinedPortalMixin",
     "MixinAtum",
     "MixinDefaultBiomeFeatures",
     "MixinGeneratorOptions",

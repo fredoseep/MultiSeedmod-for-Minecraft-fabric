@@ -2,7 +2,7 @@ package com.fredoseep.mixin;
 
 import com.fredoseep.SeedSeparateHelper;
 import com.fredoseep.client.MultiSeedContext;
-import com.fredoseep.client.gui.MultiSeedConfigScreen;
+import com.fredoseep.client.gui.screen.MultiSeedConfigScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.gui.screen.world.MoreOptionsDialog;

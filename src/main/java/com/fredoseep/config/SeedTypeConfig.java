@@ -33,7 +33,7 @@ public class SeedTypeConfig {
     public static boolean getBoolean(String key){
         String value = properties.getProperty(key);
         if(value==null) {
-            return !key.equals("usematchid");
+            return !(key.equals("usematchid")||key.equals("village_diamond")||key.equals("obsidian")||key.equals("temple_diamond")||key.equals("temple_egap")||key.equals("rp_egap")||key.equals("looting_sword")||key.equals("golden_carrot")||key.equals("shipwreck_diamond")||key.equals("carrot"));
         }
         return Boolean.parseBoolean(value);
     }

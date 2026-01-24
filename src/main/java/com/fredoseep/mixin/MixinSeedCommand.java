@@ -36,7 +36,7 @@ public class MixinSeedCommand {
                     message.append(formatSeed(overworldSeed));
                     message.append(new LiteralText("\n")); // 换行
 
-                    message.append(new LiteralText("地狱: ").formatted(Formatting.RED));
+                    message.append(new LiteralText("下界: ").formatted(Formatting.RED));
                     message.append(formatSeed(netherSeed));
                     message.append(new LiteralText("\n")); // 换行
 

@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "multiseeds",
-	"version": "3.3.3",
+	"version": "4.0.0",
 	"name": "MultiSeeds",
 	"accessWidener": "multiseed.accesswidener",
 	"description": "A fabric mod to generate a world with different seeds for each dimensions, and practice ranked seeds",

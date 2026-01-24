@@ -1,6 +1,6 @@
 package com.fredoseep.mixin;
 
-import com.fredoseep.client.gui.SeedTypeConfigScreen;
+import com.fredoseep.client.gui.screen.SeedTypeConfigScreen;
 import com.fredoseep.util.WorldCreationHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;

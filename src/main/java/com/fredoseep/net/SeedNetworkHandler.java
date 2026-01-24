@@ -1,5 +1,6 @@
 package com.fredoseep.net;
 
+import com.fredoseep.util.FetchSeed;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.BufferedReader;
@@ -21,9 +22,9 @@ public class SeedNetworkHandler {
         public String error;
     }
 
-    public static CompletableFuture<SeedResult> fetchSeeds(String overworldSeedTypeText,String bastionTypeText) {
+    public static CompletableFuture<SeedResult> fetchSeeds(String overworldSeedTypeText,String bastionTypeText,String bastionBiomeTypeText,String fortressBiomeTypeText) {
         SeedResult result = new SeedResult();
-        if(overworldSeedTypeText==null){
+        if(overworldSeedTypeText==null||bastionTypeText==null||bastionBiomeTypeText==null||fortressBiomeTypeText==null){
             Random random = new Random();
             result.overworldSeed = String.valueOf(random.nextLong());
             result.netherSeed = String.valueOf(random.nextLong());
@@ -33,8 +34,11 @@ public class SeedNetworkHandler {
 
             HttpURLConnection conn = null;
 
+            StringBuilder variationsText = new StringBuilder();
+            variationsText.append(FetchSeed.randADetailedOverworldType(overworldSeedTypeText)).append(bastionBiomeTypeText).append(FetchSeed.randADetailedBastionType(bastionTypeText)).append(",").append(fortressBiomeTypeText);
+
             try {
-                String API_URL = BASE_URL+"?overworld="+overworldSeedTypeText+"&nether="+bastionTypeText;
+                String API_URL = BASE_URL+"?overworld="+overworldSeedTypeText+"&nether="+bastionTypeText+"&variations="+variationsText.toString();
                 URL url = new URL(API_URL);
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");

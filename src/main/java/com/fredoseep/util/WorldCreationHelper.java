@@ -36,7 +36,7 @@ public class WorldCreationHelper {
                 GameMode.SURVIVAL,
                 false,
                 Difficulty.EASY,
-                true,
+                false,
                 new GameRules(),
                 DataPackSettings.SAFE_MODE
         );
