@@ -4,7 +4,6 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "CreateWorldScreenMixin",
-    "ForceRuinedPortalMixin",
     "MixinAtum",
     "MixinDefaultBiomeFeatures",
     "MixinGeneratorOptions",
@@ -12,7 +11,8 @@
     "MixinLevelProperties",
     "MixinMinecraftServer",
     "MixinSeedCommand",
-    "MixinServerWorld"
+    "MixinServerWorld",
+    "PlayerAdvancementTrackerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

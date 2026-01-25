@@ -27,6 +27,21 @@ public class MixinLevelProperties {
         long nether = dynamic.get("MultiSeed_Nether").asLong(0L);
         long end = dynamic.get("MultiSeed_End").asLong(0L);
 
+        long netherTime = dynamic.get("netherTime").asLong(-1L);
+        long bastionTime = dynamic.get("bastionTime").asLong(-1L);
+        long fortressTime = dynamic.get("fortressTime").asLong(-1L);
+        long blindTime = dynamic.get("blindTime").asLong(-1L);
+        long strongholdTime = dynamic.get("strongholdTime").asLong(-1L);
+        long endTime = dynamic.get("endTime").asLong(-1L);
+
+        if (netherTime != -1) MultiSeedContext.netherTime = netherTime;
+        if (bastionTime != -1) MultiSeedContext.bastionTime = bastionTime;
+        if (fortressTime != -1) MultiSeedContext.fortressTime = fortressTime;
+        if (blindTime != -1) MultiSeedContext.blindTime = blindTime;
+        if (strongholdTime != -1) MultiSeedContext.strongholdTime = strongholdTime;
+        if (endTime != -1) MultiSeedContext.endTime = endTime;
+
+
         if (overworld != 0L || nether != 0L || end != 0L) {
             MultiSeedContext.overworldSeed = overworld;
             MultiSeedContext.netherSeed = nether;
@@ -36,9 +51,17 @@ public class MixinLevelProperties {
 
     @Inject(method = "updateProperties", at = @At("HEAD"))
     private void onUpdateProperties(RegistryTracker registryTracker, CompoundTag rootTag, CompoundTag playerTag, CallbackInfo ci) {
-        if (MultiSeedContext.overworldSeed != 0L) rootTag.putLong("MultiSeed_Overworld", MultiSeedContext.overworldSeed);
+        if (MultiSeedContext.overworldSeed != 0L)
+            rootTag.putLong("MultiSeed_Overworld", MultiSeedContext.overworldSeed);
         if (MultiSeedContext.netherSeed != 0L) rootTag.putLong("MultiSeed_Nether", MultiSeedContext.netherSeed);
         if (MultiSeedContext.endSeed != 0L) rootTag.putLong("MultiSeed_End", MultiSeedContext.endSeed);
+
+        if (MultiSeedContext.netherTime != -1L) rootTag.putLong("netherTime", MultiSeedContext.netherTime);
+        if (MultiSeedContext.bastionTime != -1L) rootTag.putLong("bastionTime", MultiSeedContext.bastionTime);
+        if (MultiSeedContext.fortressTime != -1L) rootTag.putLong("fortressTime", MultiSeedContext.fortressTime);
+        if (MultiSeedContext.blindTime != -1L) rootTag.putLong("blindTime", MultiSeedContext.blindTime);
+        if (MultiSeedContext.strongholdTime != -1L) rootTag.putLong("strongholdTime", MultiSeedContext.strongholdTime);
+        if (MultiSeedContext.endTime != -1) rootTag.putLong("endTime", MultiSeedContext.endTime);
     }
 
 

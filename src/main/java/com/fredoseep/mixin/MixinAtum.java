@@ -1,9 +1,11 @@
 package com.fredoseep.mixin;
 
+import com.fredoseep.client.gui.screen.FallbackScreen;
 import com.fredoseep.util.WorldCreationHelper;
 import me.voidxwalker.autoreset.Atum;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.text.LiteralText;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,7 +17,7 @@ public class MixinAtum {
     @Inject(method = "createNewWorld", at = @At("HEAD"), cancellable = true, remap = false)
     private static void hijackCreateWorld(CallbackInfo ci) {
         Atum.stopRunning();
-        WorldCreationHelper.createAutoWorld(MinecraftClient.getInstance(), new TitleScreen());
+        WorldCreationHelper.createAutoWorld(MinecraftClient.getInstance(), new FallbackScreen(new LiteralText("Fetching a seed...")));
         ci.cancel();
     }
 }

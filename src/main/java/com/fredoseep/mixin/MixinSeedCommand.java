@@ -1,6 +1,10 @@
 package com.fredoseep.mixin;
 
+import com.fredoseep.client.MultiSeedContext;
 import com.mojang.brigadier.CommandDispatcher;
+import com.redlimerl.speedrunigt.timer.InGameTimer;
+import com.redlimerl.speedrunigt.timer.InGameTimerUtils;
+import com.redlimerl.speedrunigt.timer.TimerStatus;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.SeedCommand;
@@ -43,6 +47,17 @@ public class MixinSeedCommand {
                     message.append(new LiteralText("末地: ").formatted(Formatting.LIGHT_PURPLE));
                     message.append(formatSeed(endSeed));
 
+                    if(InGameTimer.getInstance().isCompleted()){
+                        message.append(new LiteralText("\n"));
+                        message.append(new LiteralText("具体分段："));
+                        message.append(new LiteralText("\n"));
+                        message.append("进入下界：     ").append((new LiteralText(InGameTimerUtils.timeToStringFormat(MultiSeedContext.netherTime)))).append(new LiteralText("\n"));
+                        message.append("进入猪堡：     ").append((new LiteralText(InGameTimerUtils.timeToStringFormat(MultiSeedContext.bastionTime)))).append(new LiteralText("\n"));
+                        message.append("进入下界要塞：").append((new LiteralText(InGameTimerUtils.timeToStringFormat(MultiSeedContext.fortressTime)))).append(new LiteralText("\n"));
+                        message.append("盲传：          ").append((new LiteralText(InGameTimerUtils.timeToStringFormat(MultiSeedContext.blindTime)))).append(new LiteralText("\n"));
+                        message.append("隔墙有眼：     ").append((new LiteralText(InGameTimerUtils.timeToStringFormat(MultiSeedContext.strongholdTime)))).append(new LiteralText("\n"));
+                        message.append("进入末地：     ").append((new LiteralText(InGameTimerUtils.timeToStringFormat(MultiSeedContext.endTime))));
+                    }
                     source.sendFeedback(message, false);
 
                     return (int)overworldSeed;

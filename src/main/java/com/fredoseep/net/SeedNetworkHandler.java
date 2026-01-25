@@ -3,6 +3,8 @@ package com.fredoseep.net;
 import com.fredoseep.util.FetchSeed;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.redlimerl.speedrunigt.mixins.PlayerAdvancementTrackerMixin;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -158,5 +160,4 @@ public class SeedNetworkHandler {
         return result;
         });
     }
-
 }

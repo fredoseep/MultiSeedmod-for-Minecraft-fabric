@@ -1,5 +1,6 @@
 package com.fredoseep.mixin;
 
+import com.fredoseep.client.gui.screen.FallbackScreen;
 import com.fredoseep.client.gui.screen.SeedTypeConfigScreen;
 import com.fredoseep.util.WorldCreationHelper;
 import net.minecraft.client.MinecraftClient;
@@ -45,7 +46,7 @@ public abstract class MixinTitleScreen extends Screen {
             else {
                 WorldCreationHelper.createAutoWorld(
                         MinecraftClient.getInstance(),
-                        (TitleScreen) (Object) this
+                        new FallbackScreen(new LiteralText("Fetching a seed..."))
                 );
             }
         }) {

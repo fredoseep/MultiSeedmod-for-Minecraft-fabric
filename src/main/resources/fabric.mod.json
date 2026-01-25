@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "multiseeds",
-	"version": "4.0.0",
+	"version": "4.1.0",
 	"name": "MultiSeeds",
 	"accessWidener": "multiseed.accesswidener",
 	"description": "A fabric mod to generate a world with different seeds for each dimensions, and practice ranked seeds",
@@ -32,5 +32,6 @@
 		"minecraft": "~1.16.1",
 		"java": ">=8",
 		"atum": ">=2.0",
-		"mm": "\u003e\u003d2.3"}
+		"mm": "\u003e\u003d2.3"
+	}
 }

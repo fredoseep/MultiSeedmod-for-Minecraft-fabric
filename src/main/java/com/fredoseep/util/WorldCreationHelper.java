@@ -1,5 +1,6 @@
 package com.fredoseep.util;
 
+import com.fredoseep.client.gui.screen.FallbackScreen;
 import com.mojang.serialization.Lifecycle;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -16,7 +17,8 @@ import java.util.Random;
 
 public class WorldCreationHelper {
 
-    public static void createAutoWorld(MinecraftClient client, Screen fallbackScreen) {
+    public static void createAutoWorld(MinecraftClient client, FallbackScreen fallbackScreen) {
+        client.openScreen(fallbackScreen);
         FetchSeed fetchSeed = new FetchSeed();
         fetchSeed.fetchASetOfSeeds().thenRun(() -> {
             client.execute(() -> {
