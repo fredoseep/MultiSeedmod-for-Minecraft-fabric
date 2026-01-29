@@ -41,6 +41,8 @@ public class SeedNetworkHandler {
 
             try {
                 String API_URL = BASE_URL+"?overworld="+overworldSeedTypeText+"&nether="+bastionTypeText+"&variations="+variationsText.toString();
+                //System.out.println("[Multiseeds tag]:API_URL: "+API_URL);
+
                 URL url = new URL(API_URL);
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");

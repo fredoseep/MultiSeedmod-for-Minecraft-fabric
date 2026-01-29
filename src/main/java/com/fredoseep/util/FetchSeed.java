@@ -155,7 +155,6 @@ public class FetchSeed {
 
     private String randABastionBiomeType(){
         List<String> seedTypeList = new ArrayList<>();
-        if(SeedTypeConfig.getBoolean("bastion_basalt_deltas"))seedTypeList.add("biome:bastion:basalt_deltas");
         if(SeedTypeConfig.getBoolean("bastion_crimson_forest"))seedTypeList.add("biome:bastion:crimson_forest");
         if(SeedTypeConfig.getBoolean("bastion_nether_wastes"))seedTypeList.add("biome:bastion:nether_wastes");
         if(SeedTypeConfig.getBoolean("bastion_warped_forest"))seedTypeList.add("biome:bastion:warped_forest");

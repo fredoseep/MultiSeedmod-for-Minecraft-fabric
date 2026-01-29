@@ -26,7 +26,6 @@ public class SeedTypeConfigScreen extends Screen {
     private ConfigCheckbox treasure;
     private CheckboxWidget useMatchId;
     private TextFieldWidget matchIdText;
-    private CheckboxWidget bastionBasaltDeltas;
     private CheckboxWidget bastionCrimsonForest;
     private CheckboxWidget bastionNetherWastes;
     private CheckboxWidget bastionSoulSandValley;
@@ -47,7 +46,7 @@ public class SeedTypeConfigScreen extends Screen {
     }
 
     private boolean getLegality() {
-        return  (this.villageSeed.isChecked() || this.ruinedPortalSeed.isChecked() || this.templeSeed.isChecked() || this.buriedTreasureSeed.isChecked() || this.shipwreckSeed.isChecked()) && (this.housing.isChecked() || this.stables.isChecked() || this.bridge.isChecked() || this.treasure.isChecked()) && (this.bastionBasaltDeltas.isChecked() || this.bastionWarpedForest.isChecked() || this.bastionCrimsonForest.isChecked() || bastionNetherWastes.isChecked() || this.bastionSoulSandValley.isChecked()) && (this.fortressWarpedForest.isChecked() || this.fortressNetherWastes.isChecked() || this.fortressCrimsonForest.isChecked() || this.fortressBasaltDeltas.isChecked() || this.fortressSoulSandValley.isChecked());
+        return  (this.villageSeed.isChecked() || this.ruinedPortalSeed.isChecked() || this.templeSeed.isChecked() || this.buriedTreasureSeed.isChecked() || this.shipwreckSeed.isChecked()) && (this.housing.isChecked() || this.stables.isChecked() || this.bridge.isChecked() || this.treasure.isChecked()) && ( this.bastionWarpedForest.isChecked() || this.bastionCrimsonForest.isChecked() || bastionNetherWastes.isChecked() || this.bastionSoulSandValley.isChecked()) && (this.fortressWarpedForest.isChecked() || this.fortressNetherWastes.isChecked() || this.fortressCrimsonForest.isChecked() || this.fortressBasaltDeltas.isChecked() || this.fortressSoulSandValley.isChecked());
 
     }
 
@@ -74,11 +73,10 @@ public class SeedTypeConfigScreen extends Screen {
         this.bridge = new ConfigCheckbox(230, 120, 20, 20, new LiteralText("bridge"), SeedTypeConfig.getBoolean("bridge"), this);
         this.treasure = new ConfigCheckbox(230, 140, 20, 20, new LiteralText("treasure"), SeedTypeConfig.getBoolean("treasure"), this);
 
-        this.bastionBasaltDeltas = new CheckboxWidget(30, 220, 20, 20, new LiteralText("basalt deltas"), SeedTypeConfig.getBoolean("bastion_basalt_deltas"));
-        this.bastionCrimsonForest = new CheckboxWidget(30, 240, 20, 20, new LiteralText("crimson forest"), SeedTypeConfig.getBoolean("bastion_crimson_forest"));
-        this.bastionNetherWastes = new CheckboxWidget(30, 260, 20, 20, new LiteralText("nether wastes"), SeedTypeConfig.getBoolean("bastion_nether_wastes"));
-        this.bastionWarpedForest = new CheckboxWidget(30, 280, 20, 20, new LiteralText("warped forest"), SeedTypeConfig.getBoolean("bastion_warped_forest"));
-        this.bastionSoulSandValley = new CheckboxWidget(30, 300, 20, 20, new LiteralText("soul sand valley"), SeedTypeConfig.getBoolean("bastion_soul_sand_valley"));
+        this.bastionCrimsonForest = new CheckboxWidget(30, 220, 20, 20, new LiteralText("crimson forest"), SeedTypeConfig.getBoolean("bastion_crimson_forest"));
+        this.bastionNetherWastes = new CheckboxWidget(30, 240, 20, 20, new LiteralText("nether wastes"), SeedTypeConfig.getBoolean("bastion_nether_wastes"));
+        this.bastionWarpedForest = new CheckboxWidget(30, 260, 20, 20, new LiteralText("warped forest"), SeedTypeConfig.getBoolean("bastion_warped_forest"));
+        this.bastionSoulSandValley = new CheckboxWidget(30, 280, 20, 20, new LiteralText("soul sand valley"), SeedTypeConfig.getBoolean("bastion_soul_sand_valley"));
 
         this.fortressBasaltDeltas = new CheckboxWidget(230, 220, 20, 20, new LiteralText("basalt deltas"), SeedTypeConfig.getBoolean("fortress_basalt_deltas"));
         this.fortressCrimsonForest = new CheckboxWidget(230, 240, 20, 20, new LiteralText("crimson forest"), SeedTypeConfig.getBoolean("fortress_crimson_forest"));
@@ -98,11 +96,10 @@ public class SeedTypeConfigScreen extends Screen {
         this.widgetDefaultYPosition.put(stables, 100);
         this.widgetDefaultYPosition.put(bridge, 120);
         this.widgetDefaultYPosition.put(treasure, 140);
-        this.widgetDefaultYPosition.put(bastionBasaltDeltas, 220);
-        this.widgetDefaultYPosition.put(bastionCrimsonForest, 240);
-        this.widgetDefaultYPosition.put(bastionNetherWastes, 260);
-        this.widgetDefaultYPosition.put(bastionWarpedForest, 280);
-        this.widgetDefaultYPosition.put(bastionSoulSandValley, 300);
+        this.widgetDefaultYPosition.put(bastionCrimsonForest, 220);
+        this.widgetDefaultYPosition.put(bastionNetherWastes, 240);
+        this.widgetDefaultYPosition.put(bastionWarpedForest, 260);
+        this.widgetDefaultYPosition.put(bastionSoulSandValley, 280);
         this.widgetDefaultYPosition.put(fortressBasaltDeltas, 220);
         this.widgetDefaultYPosition.put(fortressCrimsonForest, 240);
         this.widgetDefaultYPosition.put(fortressNetherWastes, 260);
@@ -123,7 +120,6 @@ public class SeedTypeConfigScreen extends Screen {
         this.children.add(bridge);
         this.children.add(treasure);
 
-        this.children.add(bastionBasaltDeltas);
         this.children.add(bastionCrimsonForest);
         this.children.add(bastionNetherWastes);
         this.children.add(bastionWarpedForest);
@@ -158,7 +154,6 @@ public class SeedTypeConfigScreen extends Screen {
         SeedTypeConfig.setBoolean("bridge", this.bridge.isChecked());
         SeedTypeConfig.setBoolean("treasure", this.treasure.isChecked());
 
-        SeedTypeConfig.setBoolean("bastion_basalt_deltas", this.bastionBasaltDeltas.isChecked());
         SeedTypeConfig.setBoolean("bastion_crimson_forest", this.bastionCrimsonForest.isChecked());
         SeedTypeConfig.setBoolean("bastion_nether_wastes", this.bastionCrimsonForest.isChecked());
         SeedTypeConfig.setBoolean("bastion_warped_forest", this.bastionWarpedForest.isChecked());
@@ -185,7 +180,7 @@ public class SeedTypeConfigScreen extends Screen {
         this.bridge.active = status;
         this.stables.active = status;
 
-        this.bastionBasaltDeltas.active = status;
+
         this.bastionCrimsonForest.active = status;
         this.bastionNetherWastes.active = status;
         this.bastionWarpedForest.active = status;
@@ -216,7 +211,7 @@ public class SeedTypeConfigScreen extends Screen {
         this.treasure.y = this.widgetDefaultYPosition.get(treasure) + this.scrolledOffset;
         this.bridge.y = this.widgetDefaultYPosition.get(bridge) + this.scrolledOffset;
 
-        this.bastionBasaltDeltas.y = this.widgetDefaultYPosition.get(bastionBasaltDeltas) + this.scrolledOffset;
+
         this.bastionCrimsonForest.y = this.widgetDefaultYPosition.get(bastionCrimsonForest) + this.scrolledOffset;
         this.bastionNetherWastes.y = this.widgetDefaultYPosition.get(bastionNetherWastes) + this.scrolledOffset;
         this.bastionWarpedForest.y = this.widgetDefaultYPosition.get(bastionWarpedForest) + this.scrolledOffset;
@@ -286,7 +281,7 @@ public class SeedTypeConfigScreen extends Screen {
             if (68 + this.scrolledOffset > UPPER_BORDER)
                 drawStringWithShadow(matrices, this.textRenderer, "Bastion Type", 230, 68 + this.scrolledOffset, 0xA0A0A0);
 
-            this.bastionBasaltDeltas.render(matrices, mouseX, mouseY, delta);
+
             this.bastionCrimsonForest.render(matrices, mouseX, mouseY, delta);
             this.bastionNetherWastes.render(matrices, mouseX, mouseY, delta);
             this.bastionWarpedForest.render(matrices, mouseX, mouseY, delta);
