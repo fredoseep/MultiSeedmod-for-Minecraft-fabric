@@ -1,10 +1,22 @@
 package com.fredoseep.util;
 
+import com.redlimerl.speedrunigt.timer.InGameTimer;
+import com.redlimerl.speedrunigt.timer.running.RunType;
+import net.fabricmc.loader.api.FabricLoader;
+
 import java.lang.reflect.Method;
 
 public class SpeedRunIGTHelper {
 
-
+    public static void startTimer(String worldName) {
+        if (FabricLoader.getInstance().isModLoaded("speedrunigt")) {
+            try {
+                InGameTimer.start(worldName, RunType.RANDOM_SEED);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public static void stopTimer() {
         try {
             Class<?> timerClass = Class.forName("com.redlimerl.speedrunigt.timer.InGameTimer", false, Thread.currentThread().getContextClassLoader());
@@ -35,7 +47,6 @@ public class SpeedRunIGTHelper {
     }
     /**
      * 尝试重置 SpeedRunIGT 的计时器
-     * 使用反射机制，即使没装该模组也不会报错
      */
     public static void tryResetTimer() {
         try {

@@ -3,7 +3,6 @@ package com.fredoseep.util;
 import com.fredoseep.client.gui.screen.FallbackScreen;
 import com.mojang.serialization.Lifecycle;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.resource.DataPackSettings;
 import net.minecraft.util.registry.RegistryTracker;
 import net.minecraft.world.Difficulty;
@@ -14,24 +13,43 @@ import net.minecraft.world.level.LevelInfo;
 import net.minecraft.world.level.LevelProperties;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class WorldCreationHelper {
 
+    private static final AtomicBoolean IS_RESETTING = new AtomicBoolean(false);
+
     public static void createAutoWorld(MinecraftClient client, FallbackScreen fallbackScreen) {
+        if (!IS_RESETTING.compareAndSet(false, true)) {
+            return;
+        }
+
         client.openScreen(fallbackScreen);
         FetchSeed fetchSeed = new FetchSeed();
+
         fetchSeed.fetchASetOfSeeds().thenRun(() -> {
             client.execute(() -> {
-                startWorldGen(client);
+                try {
+                    startWorldGen(client);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    IS_RESETTING.set(false);
+                }
             });
+        }).exceptionally(e -> {
+            e.printStackTrace();
+            IS_RESETTING.set(false);
+            return null;
         });
     }
 
     private static void startWorldGen(MinecraftClient client) {
-        SpeedRunIGTHelper.tryResetTimer();
+
         StandardsettingsHelper.tryResetSettings();
 
         String worldName = "MultiSeed_Auto_" + System.currentTimeMillis() + "_" + new Random().nextInt(100);
+        SpeedRunIGTHelper.startTimer(worldName);
 
         LevelInfo levelInfo = new LevelInfo(
                 worldName,
