@@ -23,6 +23,7 @@
   "client": [
     "CreateWorldScreenMixin",
     "DebugHudMixin",
+    "MixinChestBlockEntityRenderer",
     "MixinCreditsScreen",
     "MixinTitleScreen"
   ]

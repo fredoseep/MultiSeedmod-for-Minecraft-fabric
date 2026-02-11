@@ -4,11 +4,16 @@ import com.fredoseep.util.FetchSeed;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.redlimerl.speedrunigt.mixins.PlayerAdvancementTrackerMixin;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
@@ -24,13 +29,15 @@ public class SeedNetworkHandler {
         public String error;
     }
 
-    public static CompletableFuture<SeedResult> fetchSeeds(String overworldSeedTypeText,String bastionTypeText,String bastionBiomeTypeText,String fortressBiomeTypeText) {
+    public static CompletableFuture<SeedResult> fetchSeeds(String overworldSeedTypeText, String bastionTypeText, String bastionBiomeTypeText, String fortressBiomeTypeText) {
         SeedResult result = new SeedResult();
-        if(overworldSeedTypeText==null||bastionTypeText==null||bastionBiomeTypeText==null||fortressBiomeTypeText==null){
+        if (overworldSeedTypeText == null || bastionTypeText == null || bastionBiomeTypeText == null || fortressBiomeTypeText == null) {
             Random random = new Random();
             result.overworldSeed = String.valueOf(random.nextLong());
             result.netherSeed = String.valueOf(random.nextLong());
-            return CompletableFuture.supplyAsync(()->{return result;});
+            return CompletableFuture.supplyAsync(() -> {
+                return result;
+            });
         }
         return CompletableFuture.supplyAsync(() -> {
 
@@ -40,8 +47,7 @@ public class SeedNetworkHandler {
             variationsText.append(FetchSeed.randADetailedOverworldType(overworldSeedTypeText)).append(bastionBiomeTypeText).append(FetchSeed.randADetailedBastionType(bastionTypeText)).append(",").append(fortressBiomeTypeText);
 
             try {
-                String API_URL = BASE_URL+"?overworld="+overworldSeedTypeText+"&nether="+bastionTypeText+"&variations="+variationsText.toString();
-                //System.out.println("[Multiseeds tag]:API_URL: "+API_URL);
+                String API_URL = BASE_URL + "?overworld=" + overworldSeedTypeText + "&nether=" + bastionTypeText + "&variations=" + variationsText.toString();
 
                 URL url = new URL(API_URL);
                 conn = (HttpURLConnection) url.openConnection();
@@ -52,6 +58,19 @@ public class SeedNetworkHandler {
                 int responseCode = conn.getResponseCode();
                 if (responseCode != 200) {
                     result.error = "服务器连接失败: " + responseCode;
+                    CompletableFuture.runAsync(() -> {
+                        try {
+                            Path path = Paths.get("error-api.txt");
+                            String header = "此文件记录了请求错误的api，上报给开发者有助于排查：\n";
+                            String errorAPI = "[" + LocalDateTime.now() + "]" + API_URL + "\n";
+                            if (Files.notExists(path)) {
+                                Files.write(path, header.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE);
+                            }
+                            Files.write(path, errorAPI.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
                     return result;
                 }
 
@@ -94,16 +113,19 @@ public class SeedNetworkHandler {
             return result;
         });
     }
+
     //#4829364
     public static CompletableFuture<SeedResult> fetchSeeds(String matchId) {
         SeedResult result = new SeedResult();
-        if(matchId.equals("")){
+        if (matchId.equals("")) {
             Random random = new Random();
             result.overworldSeed = String.valueOf(random.nextLong());
             result.netherSeed = String.valueOf(random.nextLong());
-            return CompletableFuture.supplyAsync(()->{return result;});
+            return CompletableFuture.supplyAsync(() -> {
+                return result;
+            });
         }
-        return CompletableFuture.supplyAsync(()->{
+        return CompletableFuture.supplyAsync(() -> {
             HttpURLConnection conn = null;
             try {
                 String API_URL = BASE_URL + "/" + matchId;
@@ -136,7 +158,7 @@ public class SeedNetworkHandler {
 
                 if (rootObject.has("data") && rootObject.get("data").isJsonObject()) {
                     JsonObject seedData = rootObject.getAsJsonObject("data");
-                    if(seedData.has("seeds")&&seedData.get("seeds").isJsonObject()){
+                    if (seedData.has("seeds") && seedData.get("seeds").isJsonObject()) {
                         JsonObject seeds = seedData.getAsJsonObject("seeds");
                         if (seeds.has("overworldSeed")) {
                             result.overworldSeed = seeds.get("overworldSeed").getAsString();
@@ -144,22 +166,21 @@ public class SeedNetworkHandler {
                         if (seeds.has("netherSeed")) {
                             result.netherSeed = seeds.get("netherSeed").getAsString();
                         }
-                    }
-                    else{
+                    } else {
                         result.error = "no seeds obj";
                     }
                 } else {
                     result.error = "响应格式错误: 找不到 data 对象";
                 }
             } catch (Exception e) {
-            e.printStackTrace();
-            result.error = "发生错误: " + e.getMessage();
-        } finally {
-            if (conn != null) {
-                conn.disconnect();
+                e.printStackTrace();
+                result.error = "发生错误: " + e.getMessage();
+            } finally {
+                if (conn != null) {
+                    conn.disconnect();
+                }
             }
-        }
-        return result;
+            return result;
         });
     }
 }

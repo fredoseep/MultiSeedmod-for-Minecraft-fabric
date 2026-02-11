@@ -2,6 +2,7 @@ package com.fredoseep.mixin;
 
 import com.fredoseep.client.gui.screen.FallbackScreen;
 import com.fredoseep.client.gui.screen.SeedTypeConfigScreen;
+import com.fredoseep.util.SpringFestival;
 import com.fredoseep.util.WorldCreationHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -19,6 +20,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.time.LocalDateTime;
+import java.time.Month;
+
 @Mixin(TitleScreen.class)
 public abstract class MixinTitleScreen extends Screen {
     @Shadow
@@ -28,22 +32,21 @@ public abstract class MixinTitleScreen extends Screen {
     protected MixinTitleScreen(Text title) {
         super(title);
     }
+
     @Inject(method = "init", at = @At("TAIL"))
     private void changeSplashText(CallbackInfo ci) {
-        this.splashText = "Without MCSR Ranked!!";
+        if(SpringFestival.isSpringFestival()) this.splashText = "马年快乐！！";
+        else this.splashText = "Without MCSR Ranked!!";
     }
-
     @Inject(method = "init", at = @At("RETURN"))
     private void initMultiSeed(CallbackInfo ci) {
         int x = this.width - 100;
         int y = 138;
         int size = 20;
-
         this.addButton(new ButtonWidget(x, y, size, size, new LiteralText(""), (button) -> {
-            if(Screen.hasShiftDown()){
+            if (Screen.hasShiftDown()) {
                 this.client.openScreen(new SeedTypeConfigScreen(this));
-            }
-            else {
+            } else {
                 WorldCreationHelper.createAutoWorld(
                         MinecraftClient.getInstance(),
                         new FallbackScreen(new LiteralText("Fetching a seed..."))
