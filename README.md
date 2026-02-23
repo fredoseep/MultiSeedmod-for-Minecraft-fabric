@@ -1,5 +1,5 @@
 This is a fabric mod for minecraft 1.16.1.  
-For 2.0.0+ Atum is A MUST.  
+For 2.0.0+ Atum and SpeedrunApi are MUSTS.  
 java21+ is required.  
 shift + click the carrot button to config the seed type.  
 You can scroll down in the config screen!!
