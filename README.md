@@ -1,6 +1,7 @@
 fabric api is needed or the loot tables are vanilla
+
 This is a fabric mod for minecraft 1.16.1.  
-For 2.0.0+ Atum ,SpeedrunApi and SpeedrunIgt are MUSTS.  
+
 java21+ is required.  
 shift + click the carrot button to config the seed type.  
 You can scroll down in the config screen!!
